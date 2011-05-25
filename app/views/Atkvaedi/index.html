@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title: 'Inicio' /}
+<div id="main">
+	#{if questions}
+	<h2 class="row">Preguntas recientes</h2>
+	#{list items:questions, as:'question'}
+	#{if question_isLast}
+	<div class="row question question_last">
+	#{/if}
+	#{else}
+	<div class="row question">
+	#{/else}
+		<a href="@{Atkvaedi.question(question.id)}"><h3>${question.title}</h3></a>
+		<span class="createdAt">Creado el ${question.createdAt.format("dd/MM/yyyy HH:mm:ss", "es")}</span>
+	</div>
+	#{/list}
+	#{/if}
+	#{else}
+	<p class="row info standalone">No hay preguntas activas. Puedes crear una en el <a href="@{Admin.dashboard}">panel de control</a>.</p>
+	#{/else}
+</div>

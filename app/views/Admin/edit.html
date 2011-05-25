@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title: 'Inicio' /}
+#{set 'moreScripts'}
+<script src="@{'/public/javascripts/add.js'}"></script>
+#{/set}
+<div id="main">
+	<div class="row">
+		#{form @Admin.update(), id:'add'}
+			#{field 'question.title'}
+			<label>Título</label>
+			<input maxlength="140" type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}">
+			#{if field.error}
+			<span class="error">${field.error}</span>
+			#{/if}
+			#{/field}			
+			#{if question != null && question.id}
+				#{field 'question.id'}
+				<input type="hidden" id="${field.id}" name="${field.name}" value="${field.value}">
+				#{/field}
+			#{/if}
+			<span class="twelvecol" id="charLeft_title">140 carácteres libres</span><br>
+			#{field 'question.description'}
+			<label>Descripción</label>
+			<textarea rows="16" id="${field.id}" name="${field.name}" class="${field.errorClass}">${field.value?.raw()}</textarea>
+			#{if field.error}
+			<span class="error">${field.error}</span>
+			#{/if}
+			#{/field}
+			<span class="twelvecol" id="charLeft_description">1000 carácteres libres</span><br>
+			<button type="submit">${submitText}</button>
+		#{/form}
+	</div>
+</div>

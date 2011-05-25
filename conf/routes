@@ -1,0 +1,35 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Atkvaedi.index
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+GET		/q/{<[0-9]+>id}							Atkvaedi.question
+
+POST	/q/{<[0-9]+>id}/vote					Atkvaedi.vote
+
+GET		/q/{<[0-9]+>id}/edit					Admin.edit
+
+GET		/q/{<[0-9]+>id}/delete					Admin.delete
+
+GET		/q/{<[0-9]+>id}/close					Admin.close
+
+GET		/q/{<[0-9]+>id}/open					Admin.open
+
+GET		/sp/login								Atkvaedi.login
+
+GET		/sp/logout								Atkvaedi.logout
+
+GET		/dashboard								Admin.dashboard
+
+GET		/q/new									Admin.create
+
+POST	/q/update								Admin.update
+
+GET		/sp/blacklist							Admin.blacklist
+
+POST 	/sp/blacklisted							Admin.blacklisted

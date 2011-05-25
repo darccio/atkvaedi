@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>#{get 'title' /} - ${name}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+		<link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>	  
+		<link rel="stylesheet" href="@{'/public/stylesheets/1140.css'}" type="text/css" media="screen"> 
+		
+		<!--[if lte IE 9]>
+		<link rel="stylesheet" href="@{'/public/stylesheets/ie.css'}" type="text/css" media="screen">
+		<![endif]--> 
+		  
+		<link rel="stylesheet" href="@{'/public/stylesheets/layout.css'}" type="text/css" media="screen"> 
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}"> 
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+    </head>
+    <body class="container">
+		<header class="row">
+			<a href="@{Atkvaedi.index}" class="twelvecol"><img src="@{'/public/images/logo.png'}"></a>
+		</header>
+    	<div id="wrapper" class="row">
+    		#{if flash.success}
+		    <p class="row success">${flash.success}</p>
+			#{/if}
+			#{if flash.error}
+			<p class="row error">${flash.error}</p>
+			#{/if}
+			#{if isAdmin}    
+	    	<div class="row userbar">
+	    		<a href="@{Admin.dashboard}">Mis preguntas</a> -
+	    		<a href="@{Admin.create}">Nueva pregunta</a> - 
+	    		<a href="@{Admin.blacklist}">Cargar blacklist</a> - 
+	    		<a href="@{Atkvaedi.logout}">Salir</a>
+	    	</div>
+	    	#{/if}
+        	#{doLayout /}
+        </div>
+        <footer class="row">
+			<p>${name} - 2011</p>
+		</footer>
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        #{get 'moreScripts' /}
+    </body>
+</html>

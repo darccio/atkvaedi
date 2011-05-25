@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title: 'Inicio' /}
+<div id="main">
+	<div class="row">
+		#{form @Admin.blacklisted(), id:'add'}
+			#{field 'list'}
+			<label>Blacklist</label><br>
+			<textarea rows="8" id="${field.id}" name="${field.name}" class="${field.errorClass}"></textarea>
+			#{if field.error}
+			<span class="error">${field.error}</span>
+			#{/if}
+			#{/field}<br><br>
+			<button type="submit">${submitText}</button>
+		#{/form}
+	</div>
+</div>

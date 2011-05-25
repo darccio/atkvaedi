@@ -1,0 +1,30 @@
+# Extracted from https://github.com/ulrich/macaron-factory/blob/master/.gitignore
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
+# Ignore Play! working directory
+tmp
+log
+test-result
+eclipse
+precompiled
+
+# Ignore Eclipse
+bin/**
+*.tmp
+*.bak
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# CDT-specific
+.cproject
+
+# Ignore vi
+*.swp
+*.swo
+

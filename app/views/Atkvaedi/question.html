@@ -1,0 +1,32 @@
+#{extends 'main.html' /}
+#{set title: question.title /}
+<div id="main" class="detail">
+	<div class="row">
+		<h2>${question.title}</h2>
+		<span class="createdAt">Creado el ${question.createdAt.format("dd/MM/yyyy HH:mm:ss", "es")}</span>
+		<p class="description">${question.description.raw()}</p>
+	</div>
+	#{if voted || question.close}
+	<div class="row info results">
+		#{if question.close}
+		<p>Votación cerrada.</p>
+		#{/if}
+		#{else}
+		<p>Ya has votado.</p>
+		#{/else}
+		<p class="dark"><strong>Resultados:</strong> Sí (${question.yes}), En blanco (${question.dontCare}) y No (${question.no}).</p>
+	</div>
+	#{/if}
+	#{else}
+		<form action="@{Atkvaedi.vote(question.id).secure()}" method="POST" id="vote" class="row">
+			<button id="yes" name="yes" type="submit">Sí</button>
+			<button id="dontCare" name="dontCare" type="submit">En blanco</button>
+			<button id="no" name="no" type="submit">No</button><br>
+			*{<div id="captcha">
+			#{ugot.recaptcha theme: 'white', lang: 'es' /}
+			</div>}*
+			<input type="hidden" id="authenticityToken" name="authenticityToken" value="${authenticityToken}">
+			<input type="hidden" id="control" name="control" value="${control}">
+		</form>
+	#{/else}
+</div>

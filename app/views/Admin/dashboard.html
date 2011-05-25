@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title: 'Mis preguntas' /}
+<div id="main">
+	#{if questions}
+	<h2 class="row">${title}</h2>
+	#{list items:questions, as:'question'}
+	#{if question_isLast}
+	<div class="row question question_last">
+	#{/if}
+	#{else}
+	<div class="row question">
+	#{/else}
+		<a href="@{Atkvaedi.question(question.id)}"><h3>${question.title}</h3></a>
+		<a href="@{Admin.edit(question.id)}">Editar</a> - <a href="@{Admin.delete(question.id)}">Borrar</a> -
+		#{if question.close}
+		<a href="@{Admin.open(question.id)}">Abrir</a>
+		#{/if}
+		#{else}
+		<a href="@{Admin.close(question.id)}">Cerrar</a>
+		#{/else} | 
+		<span class="createdAt">Creado el ${question.createdAt.format("dd/MM/yyyy HH:mm:ss", "es")}</span>
+	</div>
+	#{/list}
+	#{/if}
+	#{else}
+	<p class="info row standalone">Crea una nueva <a href="@{Admin.create}">pregunta</a>.</p>
+	#{/else}
+	<br>
+</div>
